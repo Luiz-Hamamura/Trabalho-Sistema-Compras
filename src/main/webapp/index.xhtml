@@ -4,7 +4,9 @@
     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 
 <html xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:h="http://xmlns.jcp.org/jsf/html">
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
 
     <h:head>
         <title>Sistema De Controle</title>
@@ -13,6 +15,8 @@
     <h:body>
 
         <h:form>
+
+            <h2>Cadastro de Produtos</h2>
 
             Nome:
             <h:inputText value="#{main.nome}" />
@@ -30,8 +34,68 @@
             <br/><br/>
 
             <h:commandButton value="Salvar" action="#{main.salvar}" />
-            <h:commandButton value="Consultar" action="#{main.consultar}"/>
+            <h:commandButton value="Atualizar" action="#{main.atualizar}" />
+
+
+
+            <br/><br/>
+
+            <h:dataTable value="#{main.listaProdutos}"
+                         var="produto"
+                         border="1">
+
+                <h:column>
+                    <f:facet name="header">
+                        ID
+                    </f:facet>
+
+                    #{produto.id}
+                </h:column>
+
+                <h:column>
+                    <f:facet name="header">
+                        Nome
+                    </f:facet>
+
+                    #{produto.nome}
+                </h:column>
+
+                <h:column>
+                    <f:facet name="header">
+                        Valor
+                    </f:facet>
+
+                    #{produto.valor}
+                </h:column>
+
+                <h:column>
+                    <f:facet name="header">
+                        Estoque
+                    </f:facet>
+
+                    #{produto.estoque}
+                </h:column>
+
+                <h:column>
+                    <f:facet name="header">
+                        Ações
+                    </f:facet>
+
+                    <h:commandButton
+                        value="Editar"
+                        action="#{main.editar(produto)}" />
+
+                    <h:commandButton
+                        value="Excluir"
+                        action="#{main.excluir(produto.id)}" />
+
+                </h:column>
+
+            </h:dataTable>
+
         </h:form>
 
     </h:body>
+
+
 </html>
