@@ -8,41 +8,132 @@
       xmlns:f="http://xmlns.jcp.org/jsf/core">
 
 
-    <h:head>
-        <title>Sistema De Controle</title>
-    </h:head>
+<h:head>
+    <title>Sistema de Controle</title>
 
-    <h:body>
+    <style type="text/css">
+
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f2f2f2;
+            margin: 0;
+        }
+
+        .principal {
+            width: 900px;
+            margin: 40px auto;
+            background-color: white;
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0px 2px 8px #cccccc;
+        }
+
+        h1 {
+            color: #333333;
+            margin-top: 0;
+        }
+
+        h2 {
+            color: #444444;
+            border-bottom: 1px solid #dddddd;
+            padding-bottom: 10px;
+        }
+
+        .campo {
+            margin-bottom: 15px;
+        }
+
+        .campo label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: bold;
+        }
+
+        .entrada {
+            width: 300px;
+            padding: 8px;
+            border: 1px solid #cccccc;
+            border-radius: 4px;
+        }
+
+        .botao {
+            padding: 8px 15px;
+            margin-right: 5px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+
+        .tabela {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 15px;
+        }
+
+        .tabela th {
+            background-color: #444444;
+            color: white;
+            padding: 10px;
+            text-align: left;
+        }
+
+        .tabela td {
+            border: 1px solid #dddddd;
+            padding: 10px;
+        }
+
+        .tabela tr:nth-child(even) {
+            background-color: #f5f5f5;
+        }
+
+    </style>
+</h:head>
+
+<h:body>
+
+    <div class="principal">
+
+        <h1>Sistema de Controle</h1>
+
+        <h2>Cadastro de Produtos</h2>
 
         <h:form>
 
-            <h2>Cadastro de Produtos</h2>
+            <div class="campo">
+                <label>Nome:</label>
+                <h:inputText value="#{main.nome}"
+                             styleClass="entrada" />
+            </div>
 
-            Nome:
-            <h:inputText value="#{main.nome}" />
+            <div class="campo">
+                <label>Valor:</label>
+                <h:inputText value="#{main.valor}"
+                             styleClass="entrada" />
+            </div>
+
+            <div class="campo">
+                <label>Estoque:</label>
+                <h:inputText value="#{main.estoque}"
+                             styleClass="entrada" />
+            </div>
+
+            <h:commandButton
+                value="Salvar"
+                action="#{main.salvar}"
+                styleClass="botao" />
+
+            <h:commandButton
+                value="Atualizar"
+                action="#{main.atualizar}"
+                styleClass="botao" />
 
             <br/><br/>
 
-            Valor:
-            <h:inputText value="#{main.valor}" />
-
-            <br/><br/>
-
-            Estoque:
-            <h:inputText value="#{main.estoque}" />
-
-            <br/><br/>
-
-            <h:commandButton value="Salvar" action="#{main.salvar}" />
-            <h:commandButton value="Atualizar" action="#{main.atualizar}" />
-
-
-
-            <br/><br/>
+            <h2>Produtos Cadastrados</h2>
 
             <h:dataTable value="#{main.listaProdutos}"
                          var="produto"
-                         border="1">
+                         styleClass="tabela">
 
                 <h:column>
                     <f:facet name="header">
@@ -83,11 +174,13 @@
 
                     <h:commandButton
                         value="Editar"
-                        action="#{main.editar(produto)}" />
+                        action="#{main.editar(produto)}"
+                        styleClass="botao" />
 
                     <h:commandButton
                         value="Excluir"
-                        action="#{main.excluir(produto.id)}" />
+                        action="#{main.excluir(produto.id)}"
+                        styleClass="botao" />
 
                 </h:column>
 
@@ -95,7 +188,9 @@
 
         </h:form>
 
-    </h:body>
+    </div>
+
+</h:body>
 
 
 </html>
